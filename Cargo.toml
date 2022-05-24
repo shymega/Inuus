@@ -1,0 +1,31 @@
+[package]
+name = "sshwarden"
+version = "0.1.0"
+edition = "2021"
+authors = ["Dom Rodriguez (shymega) <shymega@shymega.org.uk>"]
+keywords = ["bitwarden", "ssh-agent", "ssh", "keys"]
+categories = ["bitwarden", "ssh"]
+license = "MIT"
+description = "Flexible OpenSSH agent for secure on-demand key management, written in Rust."
+publish = false
+readme = "/README.md"
+repository = "https://github.com/shymega/sshwarden.git"
+homepage = "https://github.com/shymega/sshwarden"
+
+[lib]
+name = "sshwarden"
+path = "src/lib.rs"
+
+[[bin]]
+name = "sshw"
+
+[dependencies]
+ssh-keys = "0.1.4"
+serde = { version = "1.0.137", features = ["derive"] }
+serde_json = "1.0.81"
+ring = "0.16.20"
+log = "0.4.17"
+dirs = "4.0.0"
+env_logger = "0.9.0"
+ssh-agent-lib = "0.2.5"
+rbw = "1.4.3"
