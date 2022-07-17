@@ -21,12 +21,13 @@ name = "sshw"
 
 [dependencies]
 ssh-keys = "0.1.4"
-serde = { version = "1.0.137", features = ["derive"] }
-serde_json = "1.0.81"
+serde = { version = "1.0.139", features = ["derive"] }
+serde_json = "1.0.82"
 ring = "0.16.20"
 log = "0.4.17"
 dirs = "4.0.0"
 env_logger = "0.9.0"
 ssh-agent-lib = "0.2.5"
 rbw = "1.4.3"
-tokio = { version = "1.19.2", features = ["full"] }
+tokio = { version = "1.20.0", features = ["full"] }
+clap = "3.2.12"
