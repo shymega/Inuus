@@ -219,9 +219,9 @@ dependencies = [
 
 [[package]]
 name = "clap"
-version = "3.2.12"
+version = "3.2.20"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "ab8b79fe3946ceb4a0b1c080b4018992b8d27e9ff363644c1c9b6387c854614d"
+checksum = "23b71c3ce99b7611011217b366d923f1d0a7e07a92bb2dbf1e84508c673ca3bd"
 dependencies = [
  "atty",
  "bitflags",
@@ -1736,7 +1736,7 @@ dependencies = [
 name = "sshwarden"
 version = "0.1.0"
 dependencies = [
- "clap 3.2.12",
+ "clap 3.2.20",
  "dirs",
  "env_logger",
  "log",
