@@ -21,7 +21,7 @@ name = "sshw"
 
 [dependencies]
 ssh-keys = "0.1.4"
-serde = { version = "1.0.139", features = ["derive"] }
+serde = { version = "1.0.144", features = ["derive"] }
 serde_json = "1.0.82"
 ring = "0.16.20"
 log = "0.4.17"
