@@ -5,8 +5,6 @@ updates:
     schedule:
       interval: "daily"
       time: "06:00" # UTC
-    labels:
-      - "scope: pkg-deps"
     commit-message:
       prefix: "chore(deps)"
     open-pull-requests-limit: 10
@@ -16,8 +14,6 @@ updates:
     schedule:
       interval: "daily"
       time: "06:00" # UTC
-    labels:
-      - "scope: ci-deps"
     commit-message:
       prefix: "chore(ci)"
     open-pull-requests-limit: 10
