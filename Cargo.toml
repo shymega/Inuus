@@ -27,6 +27,6 @@ log = "0.4.17"
 dirs = "4.0.0"
 env_logger = "0.9.3"
 ssh-agent-lib = "0.2.5"
+rbw = "1.4.3"
 tokio = { version = "1.22.0", features = ["full"] }
 clap = "4.0.26"
-rwarden = "0.0.1"
