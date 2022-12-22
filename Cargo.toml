@@ -1,23 +1,23 @@
 [package]
-name = "sshwarden"
+name = "inuus"
 version = "0.1.0"
 edition = "2021"
 authors = ["Dom Rodriguez (shymega) <shymega@shymega.org.uk>"]
-keywords = ["bitwarden", "ssh-agent", "ssh", "keys"]
-categories = ["bitwarden", "ssh"]
-license = "MIT"
-description = "Flexible OpenSSH agent for secure on-demand key management, written in Rust."
+keywords = ["bitwarden", "ssh-agent", "ssh-keys", "1password", "cryptographic"]
+categories = ["bitwarden", "ssh-agent", "1password", "ssh-keys"]
+license = "GPL-3.0-or-later"
+description = "Dynamic multi-backend OpenSSH agent for secure on-demand key management, written in Rust."
 publish = false
 readme = "/README.md"
-repository = "https://github.com/shymega/sshwarden.git"
-homepage = "https://github.com/shymega/sshwarden"
+repository = "https://github.com/shymega/Inuus.git"
+homepage = "https://github.com/shymega/Inuus"
 
 [lib]
-name = "sshwarden"
+name = "inuus"
 path = "src/lib.rs"
 
 [[bin]]
-name = "sshw"
+name = "inud"
 
 [dependencies]
 ssh-keys = "0.1.4"
