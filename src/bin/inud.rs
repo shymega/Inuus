@@ -17,33 +17,49 @@
     variant_size_differences
 )]
 
-use std::path::PathBuf;
+use std::{path::PathBuf, io};
+
+use anyhow::{Result, Context};
+use thiserror::Error;
 
 use clap::{Arg, ArgAction, ArgMatches, Command};
-use config::{Config, ConfigError, Environment, File};
+use twelf::{config, Layer, Error as TwelfError};
+
+#[config]
+#[allow(dead_code)]
+struct Config {
+    chosen_backend: String,
+    control_socket: String,
+    agent_socket: String,
+}
 
 const VERSION: &str = env!("CARGO_PKG_VERSION");
 
-fn try_load_conf(path: &PathBuf) -> Result<Config, ConfigError> {
-    match Config::builder()
-        .add_source(File::from(path.as_path().clone()))
-        .add_source(Environment::with_prefix("INUD"))
-        .build()
-    {
-        Ok(cfg) => Ok(cfg),
-        Err(e) => Err(e),
-    }
+#[derive(Debug, Error)]
+enum ConfInitError {
+    #[error("Error building configuration")]
+    ConfLoadError(#[from] TwelfError),
 }
 
-fn get_cfg_path_default() -> Option<PathBuf> {
+fn try_load_conf(path: &PathBuf) -> Result<Config, ConfInitError> {
+    Ok(Config::with_layers(&[
+        Layer::Yaml(path.join("config.yaml").into()),
+        Layer::Env(Some("INUUS_".to_string()))
+        ])?)
+}
+
+fn get_cfg_path_default() -> Result<PathBuf, io::Error> {
     let def_path = dirs::config_dir()
         .unwrap()
         .join(PathBuf::from("inuus/config.toml"));
+    let path_parent = if let Some(p) = def_path.parent() {
+        p.to_owned()
+    } else { PathBuf::new() };
 
-    if def_path.exists() {
-        Some(def_path)
-    } else {
-        None
+    // Try and create the parent path
+    match std::fs::create_dir_all(&path_parent) {
+        Ok(_) => Ok(def_path),
+        Err(e) => return Err(e),
     }
 }
 
@@ -74,11 +90,12 @@ async fn main() -> Result<(), ()> {
     let arg_cfg_path = match args.get_one::<PathBuf>("config") {
         Some(p) => PathBuf::from(p),
         None => {
-            get_cfg_path_default().expect("Unable to get a default conf path.")
+            get_cfg_path_default().unwrap()
         }
     };
 
-    let _cfg = try_load_conf(&arg_cfg_path);
+    let config = try_load_conf(&arg_cfg_path)
+        .context("Unable to load and initialise configuration.")?;
 
     Ok(())
 }
