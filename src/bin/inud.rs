@@ -45,7 +45,7 @@ enum ConfInitError {
 
 fn try_load_conf(path: &PathBuf) -> Result<Config, ConfInitError> {
     Ok(Config::with_layers(&[
-        Layer::Yaml(path.join("config.yaml").into()),
+        Layer::Yaml(path.into()),
         Layer::Env(Some("INUUS_".to_string()))
         ])?)
 }
