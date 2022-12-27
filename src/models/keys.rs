@@ -8,9 +8,7 @@ pub(crate) struct KeysHolder {
 
 impl KeysHolder {
     pub(crate) fn new() -> Self {
-        Self {
-            keys: Vec::new(),
-        }
+        Self { keys: Vec::new() }
     }
 }
 
@@ -23,7 +21,13 @@ pub(crate) struct KeyHolder {
 }
 
 impl KeyHolder {
-    pub(crate) fn new(human_name: &str, cipher: &str, private_key: PrivateKey, public_key: PublicKey, origin: &str) -> Self {
+    pub(crate) fn new(
+        human_name: &str,
+        cipher: &str,
+        private_key: PrivateKey,
+        public_key: PublicKey,
+        origin: &str,
+    ) -> Self {
         Self {
             human_name: String::from(human_name),
             cipher: String::from(cipher),

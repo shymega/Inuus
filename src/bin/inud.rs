@@ -17,13 +17,13 @@
     variant_size_differences
 )]
 
-use std::{path::PathBuf, io::Error as IoError};
+use std::{io::Error as IoError, path::PathBuf};
 
-use anyhow::{Result, Context};
+use anyhow::{Context, Result};
 use thiserror::Error;
 
 use clap::{Arg, ArgAction, ArgMatches, Command};
-use twelf::{config, Layer, Error as TwelfError};
+use twelf::{config, Error as TwelfError, Layer};
 
 #[config]
 #[allow(dead_code)]
@@ -40,14 +40,14 @@ enum ConfInitError {
     #[error("Error building configuration")]
     ConfLoadError(#[from] TwelfError),
     #[error("Error creating parent directory to configuration file.")]
-    ConfParentPathCreateError(#[from] IoError)
+    ConfParentPathCreateError(#[from] IoError),
 }
 
 fn try_load_conf(path: &PathBuf) -> Result<Config, ConfInitError> {
     Ok(Config::with_layers(&[
         Layer::Yaml(path.into()),
-        Layer::Env(Some("INUUS_".to_string()))
-        ])?)
+        Layer::Env(Some("INUUS_".to_string())),
+    ])?)
 }
 
 fn get_cfg_path_default() -> Result<PathBuf, ConfInitError> {
@@ -56,7 +56,11 @@ fn get_cfg_path_default() -> Result<PathBuf, ConfInitError> {
         .join(PathBuf::from("inuus/config.yml"));
 
     // Try and create the parent path
-    std::fs::create_dir_all(&def_path.parent().expect("Unable to get parent directory of configuration file."))?;
+    std::fs::create_dir_all(
+        &def_path
+            .parent()
+            .expect("Unable to get parent directory of configuration file."),
+    )?;
 
     Ok(def_path.clone())
 }
