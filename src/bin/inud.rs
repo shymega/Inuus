@@ -17,7 +17,7 @@
     variant_size_differences
 )]
 
-use std::{path::PathBuf, io};
+use std::{path::PathBuf, io::Error as IoError};
 
 use anyhow::{Result, Context};
 use thiserror::Error;
@@ -39,6 +39,8 @@ const VERSION: &str = env!("CARGO_PKG_VERSION");
 enum ConfInitError {
     #[error("Error building configuration")]
     ConfLoadError(#[from] TwelfError),
+    #[error("Error creating parent directory to configuration file.")]
+    ConfParentPathCreateError(#[from] IoError)
 }
 
 fn try_load_conf(path: &PathBuf) -> Result<Config, ConfInitError> {
@@ -48,7 +50,7 @@ fn try_load_conf(path: &PathBuf) -> Result<Config, ConfInitError> {
         ])?)
 }
 
-fn get_cfg_path_default() -> Result<PathBuf, io::Error> {
+fn get_cfg_path_default() -> Result<PathBuf, ConfInitError> {
     let def_path = dirs::config_dir()
         .unwrap()
         .join(PathBuf::from("inuus/config.toml"));
