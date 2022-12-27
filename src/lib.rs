@@ -17,4 +17,4 @@
     variant_size_differences
 )]
 
-pub mod vault;
+pub(crate) mod models;
