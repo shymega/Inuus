@@ -82,17 +82,17 @@ fn get_args() -> ArgMatches {
 }
 
 #[tokio::main]
-async fn main() -> Result<(), ()> {
+async fn main() -> Result<()> {
     let args = get_args();
+    let def_conf_path = get_cfg_path_default()
+        .context("Unable to get default configuration path.")?;
 
     let arg_cfg_path = match args.get_one::<PathBuf>("config") {
         Some(p) => PathBuf::from(p),
-        None => {
-            get_cfg_path_default().unwrap()
-        }
+        None => def_conf_path,
     };
 
-    let config = try_load_conf(&arg_cfg_path)
+    let _config = try_load_conf(&arg_cfg_path)
         .context("Unable to load and initialise configuration.")?;
 
     Ok(())
