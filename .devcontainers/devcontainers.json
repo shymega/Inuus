@@ -1,0 +1,13 @@
+{
+	"name": "Inuus VS Code Development Environment",
+	"image": "mcr.microsoft.com/devcontainers/rust:bullseye",
+	"customizations": {
+		"vscode": {
+			"settings": {},
+			"extensions": [
+				"streetsidesoftware.code-spell-checker"
+			]
+		}
+	}
+	"postCreateCommand": "rustc --version",
+}
