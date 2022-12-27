@@ -53,16 +53,12 @@ fn try_load_conf(path: &PathBuf) -> Result<Config, ConfInitError> {
 fn get_cfg_path_default() -> Result<PathBuf, ConfInitError> {
     let def_path = dirs::config_dir()
         .unwrap()
-        .join(PathBuf::from("inuus/config.toml"));
-    let path_parent = if let Some(p) = def_path.parent() {
-        p.to_owned()
-    } else { PathBuf::new() };
+        .join(PathBuf::from("inuus/config.yml"));
 
     // Try and create the parent path
-    match std::fs::create_dir_all(&path_parent) {
-        Ok(_) => Ok(def_path),
-        Err(e) => return Err(e),
-    }
+    std::fs::create_dir_all(&def_path.parent().expect("Unable to get parent directory of configuration file."))?;
+
+    Ok(def_path.clone())
 }
 
 fn get_args() -> ArgMatches {
