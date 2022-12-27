@@ -1,0 +1,8 @@
+{
+	"name": "Inuus VS Code Development Environment",
+	"image": "mcr.microsoft.com/devcontainers/rust:bullseye",
+    "extensions": [
+        "Zerotaskx.rust-extension-pack"
+    ],
+	"postCreateCommand": "rustc --version",
+}
