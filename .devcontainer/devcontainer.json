@@ -4,5 +4,5 @@
     "extensions": [
         "Zerotaskx.rust-extension-pack"
     ],
-	"postCreateCommand": "rustc --version",
+	"postCreateCommand": "rustc --version"
 }
