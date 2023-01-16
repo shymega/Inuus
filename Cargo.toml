@@ -29,7 +29,7 @@ env_logger = "0.10.0"
 ssh-agent-lib = "0.2.5"
 rbw = "1.4.3"
 tokio = { version = "1.24.1", features = ["full"] }
-clap = "4.0.27"
+clap = "4.1.1"
 jsonrpc-core = "18.0.0"
 anyhow = "1.0.68"
 thiserror = "1.0.38"
