@@ -19,6 +19,11 @@ path = "src/lib.rs"
 [[bin]]
 name = "inud"
 
+[features]
+default = []
+bitwarden = ["rbw"]
+onepassword = []
+
 [dependencies]
 ssh-keys = "0.1.4"
 serde = { version = "1.0.152", features = ["derive"] }
@@ -27,7 +32,7 @@ log = "0.4.17"
 dirs = "4.0.0"
 env_logger = "0.10.0"
 ssh-agent-lib = "0.2.5"
-rbw = "1.4.3"
+rbw = { version = "1.4.3", optional = true  }
 tokio = { version = "1.24.2", features = ["full"] }
 clap = "4.1.1"
 jsonrpc-core = "18.0.0"
