@@ -228,9 +228,9 @@ dependencies = [
 
 [[package]]
 name = "clap"
-version = "4.1.1"
+version = "4.1.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "4ec7a4128863c188deefe750ac1d1dfe66c236909f845af04beed823638dc1b2"
+checksum = "f13b9c79b5d1dd500d20ef541215a6423c75829ef43117e1b4d17fd8af0b5d76"
 dependencies = [
  "bitflags",
  "clap_derive",
@@ -876,7 +876,7 @@ name = "inuus"
 version = "0.1.0"
 dependencies = [
  "anyhow",
- "clap 4.1.1",
+ "clap 4.1.4",
  "dirs",
  "env_logger 0.10.0",
  "jsonrpc-core",
@@ -2581,7 +2581,7 @@ version = "0.9.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "deeb0a2183b073eb9289e8c461298056f1174930317d304b2cdd8faf4b1fd23a"
 dependencies = [
- "clap 4.1.1",
+ "clap 4.1.4",
  "config-derive",
  "envy",
  "log",
