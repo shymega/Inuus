@@ -36,7 +36,7 @@ rbw = { version = "1.4.3", optional = true  }
 tokio = { version = "1.25.0", features = ["full"] }
 clap = "4.1.4"
 jsonrpc-core = "18.0.0"
-anyhow = "1.0.68"
+anyhow = "1.0.69"
 thiserror = "1.0.38"
 jsonrpc-derive = "18.0.0"
 jsonrpc-ipc-server = "18.0.0"
