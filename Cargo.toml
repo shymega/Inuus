@@ -40,4 +40,4 @@ anyhow = "1.0.69"
 thiserror = "1.0.38"
 jsonrpc-derive = "18.0.0"
 jsonrpc-ipc-server = "18.0.0"
-twelf = { version = "0.9.0", features = ["env", "yaml"] }
+twelf = { version = "0.10.0", features = ["env", "yaml"] }
