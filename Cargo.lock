@@ -274,9 +274,9 @@ dependencies = [
 
 [[package]]
 name = "config-derive"
-version = "0.9.0"
+version = "0.10.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "2df55879413444fc6044f2106e7cffba7d2e71ed673070e927f8c56e17c0aac0"
+checksum = "126df0592e12c9f8cc028d8832b9ceaa91f13b1d8b8285953bd1734b768aa83c"
 dependencies = [
  "heck 0.4.0",
  "proc-macro2",
@@ -2577,9 +2577,9 @@ checksum = "59547bce71d9c38b83d9c0e92b6066c4253371f15005def0c30d9657f50c7642"
 
 [[package]]
 name = "twelf"
-version = "0.9.0"
+version = "0.10.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "deeb0a2183b073eb9289e8c461298056f1174930317d304b2cdd8faf4b1fd23a"
+checksum = "b846244c0f498d3d0885b427bd710070f79249613206ff2b07a45d2d1509b845"
 dependencies = [
  "clap 4.1.4",
  "config-derive",
