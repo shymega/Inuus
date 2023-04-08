@@ -23,6 +23,7 @@ name = "inud"
 default = []
 bitwarden = ["rbw"]
 onepassword = []
+pass = []
 
 [dependencies]
 ssh-keys = "0.1.4"
