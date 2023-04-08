@@ -1,16 +1,16 @@
 [package]
-name = "inuus"
-version = "0.1.0"
-edition = "2021"
 authors = ["Dom Rodriguez (shymega) <shymega@shymega.org.uk>"]
-keywords = ["bitwarden", "ssh-agent", "ssh-keys", "1password", "cryptographic"]
-categories = ["bitwarden", "ssh-agent", "1password", "ssh-keys"]
-license = "GPL-3.0-or-later"
+categories = ["ssh", "ssh-agent", "ssh-keys"]
 description = "Dynamic multi-backend OpenSSH agent for secure on-demand key management, written in Rust."
+edition = "2021"
+homepage = "https://github.com/shymega/Inuus"
+keywords = ["bitwarden", "ssh-agent", "ssh-keys", "1password", "cryptographic", "pass", "security"]
+license = "GPL-3.0-or-later"
+name = "inuus"
 publish = false
 readme = "/README.md"
 repository = "https://github.com/shymega/Inuus.git"
-homepage = "https://github.com/shymega/Inuus"
+version = "0.1.0"
 
 [lib]
 name = "inuus"
@@ -20,25 +20,25 @@ path = "src/lib.rs"
 name = "inud"
 
 [features]
-default = []
 bitwarden = ["rbw"]
+default = []
 onepassword = []
 pass = []
 
 [dependencies]
-ssh-keys = "0.1.4"
-serde = { version = "1.0.159", features = ["derive"] }
-serde_json = "1.0.95"
-log = "0.4.17"
+anyhow = "1.0.70"
+clap = "4.2.1"
 dirs = "5.0.0"
 env_logger = "0.10.0"
-ssh-agent-lib = "0.2.5"
-rbw = { version = "1.6.0", optional = true  }
-tokio = { version = "1.27.0", features = ["full"] }
-clap = "4.2.1"
 jsonrpc-core = "18.0.0"
-anyhow = "1.0.70"
-thiserror = "1.0.40"
 jsonrpc-derive = "18.0.0"
 jsonrpc-ipc-server = "18.0.0"
+log = "0.4.17"
+rbw = { version = "1.6.0", optional = true  }
+serde = { version = "1.0.159", features = ["derive"] }
+serde_json = "1.0.95"
+ssh-agent-lib = "0.2.5"
+ssh-keys = "0.1.4"
+thiserror = "1.0.40"
+tokio = { version = "1.27.0", features = ["full"] }
 twelf = { version = "0.10.0", features = ["env", "yaml"] }
