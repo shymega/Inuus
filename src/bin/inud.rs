@@ -33,7 +33,7 @@ struct Config {
     agent_socket: String,
 }
 
-const VERSION: &str = env!("CARGO_PKG_VERSION");
+const VERSION: &'static str = env!("CARGO_PKG_VERSION");
 
 #[derive(Debug, Error)]
 enum ConfInitError {
