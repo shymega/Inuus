@@ -2,37 +2,34 @@ use super::enums::KeyOrigin;
 use ssh_keys::{PrivateKey, PublicKey};
 
 #[derive(Debug)]
-pub struct KeysHolder {
-    pub keys: Vec<KeyHolder>,
+pub struct Keys {
+    pub keys: Vec<KeyContainer>,
 }
 
-impl KeysHolder {
+impl Keys {
     pub fn new() -> Self {
         Self { keys: Vec::new() }
     }
 }
 
 #[derive(Debug)]
-pub struct KeyHolder {
+pub struct KeyContainer {
     pub human_name: String,
-    pub cipher: String,
-    pub private_key: PrivateKey,
+    pub private_keys: Vec<PrivateKey>,
     pub public_key: PublicKey,
     pub origin: KeyOrigin,
 }
 
-impl KeyHolder {
+impl KeyContainer {
     pub fn new(
         human_name: &str,
-        cipher: &str,
-        private_key: PrivateKey,
+        private_keys: Vec<PrivateKey>,
         public_key: PublicKey,
         origin: KeyOrigin,
     ) -> Self {
         Self {
             human_name: String::from(human_name),
-            cipher: String::from(cipher),
-            private_key,
+            private_keys,
             public_key,
             origin: origin,
         }

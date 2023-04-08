@@ -17,6 +17,6 @@
     variant_size_differences
 )]
 
-pub mod backends;
-pub mod frontends;
-pub mod models;
+pub mod secrets_providers;
+mod models;
+pub mod agent;

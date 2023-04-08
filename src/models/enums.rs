@@ -4,5 +4,7 @@ pub enum KeyOrigin {
     Bitwarden,
     #[cfg(feature = "onepassword")]
     OnePassword,
+    #[cfg(feature = "pass")]
+    Pass,
     Unselected,
 }
