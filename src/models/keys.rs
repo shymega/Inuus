@@ -1,4 +1,4 @@
-use super::enums::KeyOrigin;
+use crate::models::enums::KeyOrigin;
 use ssh_keys::{PrivateKey, PublicKey};
 
 #[derive(Debug)]
