@@ -17,6 +17,6 @@
     variant_size_differences
 )]
 
-pub mod secrets_providers;
-mod models;
 pub mod agent;
+pub mod models;
+pub mod secrets_providers;
