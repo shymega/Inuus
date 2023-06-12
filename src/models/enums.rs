@@ -1,4 +1,4 @@
-#[derive(Debug, Clone, Copy)]
+#[derive(Default, Debug, Clone, Copy)]
 pub enum KeyOrigin {
     #[cfg(feature = "bitwarden")]
     Bitwarden,
@@ -6,5 +6,6 @@ pub enum KeyOrigin {
     OnePassword,
     #[cfg(feature = "pass")]
     Pass,
+    #[default]
     Unselected,
 }
