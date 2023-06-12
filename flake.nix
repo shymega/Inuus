@@ -14,13 +14,14 @@
           inherit system;
         };
 
-        naersk' = pkgs.callPackage naersk {};
+        naersk' = pkgs.callPackage naersk { };
 
-      in rec {
+      in
+      rec {
         # For `nix build` & `nix run`:
         defaultPackage = naersk'.buildPackage {
           src = ./.;
-          nativeBuildInputs = with pkgs; [ pkg-config cmake ] ;
+          nativeBuildInputs = with pkgs; [ pkg-config cmake ];
           buildInputs = with pkgs; [ ];
         };
 
