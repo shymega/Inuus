@@ -34,7 +34,7 @@ impl KeyContainer {
             human_name: String::from(human_name),
             private_keys,
             public_key,
-            origin: origin,
+            origin,
         }
     }
 }
