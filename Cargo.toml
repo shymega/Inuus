@@ -35,7 +35,7 @@ jsonrpc-derive = "18.0.0"
 jsonrpc-ipc-server = "18.0.0"
 log = "0.4.19"
 rbw = { version = "1.7.1", optional = true  }
-serde = { version = "1.0.164", features = ["derive"] }
+serde = { version = "1.0.171", features = ["derive"] }
 serde_json = "1.0.96"
 ssh-agent-lib = "0.2.5"
 ssh-keys = "0.1.4"
