@@ -27,7 +27,7 @@ pass = []
 
 [dependencies]
 anyhow = "1.0.71"
-clap = "4.3.3"
+clap = "4.3.12"
 dirs = "5.0.1"
 env_logger = "0.10.0"
 jsonrpc-core = "18.0.0"
