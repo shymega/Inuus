@@ -33,7 +33,7 @@ env_logger = "0.10.0"
 jsonrpc-core = "18.0.0"
 jsonrpc-derive = "18.0.0"
 jsonrpc-ipc-server = "18.0.0"
-log = "0.4.18"
+log = "0.4.19"
 rbw = { version = "1.7.1", optional = true  }
 serde = { version = "1.0.164", features = ["derive"] }
 serde_json = "1.0.96"
