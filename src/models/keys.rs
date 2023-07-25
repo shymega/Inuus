@@ -1,5 +1,5 @@
 use crate::models::enums::KeyOrigin;
-use ssh_keys::{PrivateKey, PublicKey};
+use ssh_key::{PrivateKey, PublicKey};
 
 #[derive(Debug)]
 pub struct Keys {
