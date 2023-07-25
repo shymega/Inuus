@@ -20,26 +20,26 @@ path = "src/lib.rs"
 name = "inud"
 
 [features]
-bitwarden = ["rbw"]
 default = []
+bitwarden = ["rbw"]
 onepassword = []
 pass = []
 
 [dependencies]
 anyhow = "1.0.71"
-clap = "4.3.3"
+clap = "4.3.12"
 dirs = "5.0.1"
 env_logger = "0.10.0"
 jsonrpc-core = "18.0.0"
 jsonrpc-derive = "18.0.0"
 jsonrpc-ipc-server = "18.0.0"
-log = "0.4.18"
-rbw = { version = "1.7.1", optional = true  }
+log = "0.4.19"
+rbw = { version = "1.7.1", optional = true }
 serde = { version = "1.0.164", features = ["derive"] }
-serde_json = "1.0.96"
+serde_json = "1.0.99"
 ssh-agent-lib = "0.2.5"
-ssh-keys = "0.1.4"
+ssh-key = { version = "0.5.1", features = ["ed25519", "serde", "signature"] }
 thiserror = "1.0.43"
 tokio = { version = "1.28.2", features = ["full"] }
-twelf = { version = "0.11.0", features = ["env", "yaml"] }
+twelf = { version = "0.12.0", features = ["env", "yaml"] }
 uuid = { version = "1.3.3", features = ["v4", "serde"] }
