@@ -12,6 +12,12 @@ impl Keys {
     }
 }
 
+impl Default for Keys {
+    fn default() -> Self {
+        Keys::new()
+    }
+}
+
 #[derive(Debug)]
 pub(crate) struct KeyContainer {
     pub(crate) id: String,
