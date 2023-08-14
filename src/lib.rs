@@ -19,5 +19,5 @@
 #![allow(dead_code)] // TODO: TEMPORARY.
 
 pub mod agent;
-pub mod models;
-pub mod secrets_providers;
+pub(crate) mod models;
+pub(crate) mod secrets_providers;
