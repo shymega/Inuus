@@ -8,7 +8,7 @@ use std::sync::Mutex;
 /// defined in `crate::models::keys::Keys`.
 type Keys = Mutex<KeysModel>;
 
-/// `InuusAgent` holds one (unused, lint disabled) field for the shared `Mutex<Keys>` which
+/// `InuusAgent` holds one field for the shared `Mutex<Keys>` which
 /// contains a `Vec<KeyContainer>` of keys, both private and public.
 #[derive(Debug)]
 pub struct InuusAgent {
