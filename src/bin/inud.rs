@@ -22,7 +22,7 @@ use std::{io::Error as IoError, path::PathBuf};
 use anyhow::{Context, Result};
 use thiserror::Error;
 
-use clap::{Arg, ArgAction, ArgMatches, Command};
+use clap::{Arg, ArgAction, ArgMatches, Command, value_parser};
 use twelf::{config, Error as TwelfError, Layer};
 
 #[config]
@@ -33,8 +33,6 @@ struct Config {
     agent_socket: String,
 }
 
-const VERSION: &'static str = env!("CARGO_PKG_VERSION");
-
 #[derive(Debug, Error)]
 enum ConfInitError {
     #[error("Error building configuration")]
@@ -43,32 +41,32 @@ enum ConfInitError {
     ConfParentPathCreateError(#[from] IoError),
 }
 
-fn try_load_conf(path: &PathBuf) -> Result<Config, ConfInitError> {
+#[derive(Debug, Error)]
+enum ArgsError {
+    #[error("Could not get config path from Clap, including default")]
+    ArgConfigPathGetError(#[source] clap::parser::MatchesError),
+}
+
+type ConfInitResult<T, E = ConfInitError> = Result<T, E>;
+
+fn try_load_conf(path: &PathBuf) -> ConfInitResult<Config> {
     Ok(Config::with_layers(&[
         Layer::Yaml(path.into()),
         Layer::Env(Some(String::from("INUUS_"))),
     ])?)
 }
 
-fn get_cfg_path_default() -> Result<PathBuf, ConfInitError> {
-    let def_path = dirs::config_dir()
+fn get_default_cfg_path() -> PathBuf {
+    dirs::config_dir()
         .unwrap()
-        .join(PathBuf::from("inuus/config.yml"));
-
-    // Try and create the parent path
-    std::fs::create_dir_all(
-        &def_path
-            .parent()
-            .expect("Unable to get parent directory of configuration file."),
-    )?;
-
-    Ok(def_path.clone())
+        .join(PathBuf::from("inuus/config.yml"))
 }
 
 fn get_args() -> ArgMatches {
-    Command::new("inud")
-        .version(VERSION)
-        .author("Dom Rodriguez")
+    Command::new(env!("CARGO_BIN_NAME"))
+        .version(env!("CARGO_PKG_VERSION"))
+        .about(env!("CARGO_PKG_DESCRIPTION"))
+        .author(env!("CARGO_PKG_AUTHORS"))
         .subcommand_required(true)
         .arg(
             Arg::new("verbosity")
@@ -78,9 +76,12 @@ fn get_args() -> ArgMatches {
         )
         .arg(
             Arg::new("config")
+                .long("config")
                 .short('c')
-                .help("Optional path to TOML configuration."),
-        )
+                .value_name("FILE")
+                .value_parser(value_parser!(PathBuf))
+                .default_value(get_default_cfg_path().into_os_string())
+                .help("Optional path to TOML configuration."))
         .subcommand(Command::new("spawn").about("Starts the daemon."))
         .get_matches()
 }
@@ -88,16 +89,11 @@ fn get_args() -> ArgMatches {
 #[tokio::main]
 async fn main() -> Result<()> {
     let args = get_args();
-    let def_conf_path = get_cfg_path_default()
-        .context("Unable to get default configuration path.")?;
 
-    let arg_cfg_path = match args.get_one::<PathBuf>("config") {
-        Some(p) => PathBuf::from(p),
-        None => def_conf_path,
-    };
-
-    let _config = try_load_conf(&arg_cfg_path)
-        .context("Unable to load and initialise configuration.")?;
+    let _cfg = try_load_conf(args.try_get_one::<PathBuf>("config")
+                                .map_err(ArgsError::ArgConfigPathGetError).context("Maybe the conf path is missing?")?
+                                .unwrap())
+        .context("Error loading configuration into memory.")?;
 
     Ok(())
 }
