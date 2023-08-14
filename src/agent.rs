@@ -11,7 +11,6 @@ type Keys = Mutex<KeysModel>;
 /// `InuusAgent` holds one (unused, lint disabled) field for the shared `Mutex<Keys>` which
 /// contains a `Vec<KeyContainer>` of keys, both private and public.
 #[derive(Debug)]
-#[allow(dead_code)]
 pub struct InuusAgent {
     keys: Keys,
 }

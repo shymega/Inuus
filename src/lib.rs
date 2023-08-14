@@ -16,6 +16,7 @@
     unused_extern_crates,
     variant_size_differences
 )]
+#![allow(dead_code)] // TODO: TEMPORARY.
 
 pub mod agent;
 pub mod models;
