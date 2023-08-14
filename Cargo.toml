@@ -22,7 +22,7 @@ name = "inud"
 [features]
 default = []
 bitwarden = ["rbw"]
-onepassword = []
+_1password = []
 pass = []
 
 [dependencies]

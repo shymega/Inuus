@@ -14,8 +14,8 @@ pub trait SecretsProviderTrait {
 #[cfg(feature = "bitwarden")]
 pub mod bitwarden;
 
-#[cfg(feature = "onepassword")]
-pub mod onepassword;
+#[cfg(feature = "_1password")]
+pub(crate) mod _1password;
 
 #[cfg(feature = "pass")]
 pub mod pass;
