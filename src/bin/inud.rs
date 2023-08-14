@@ -22,7 +22,7 @@ use std::{io::Error as IoError, path::PathBuf};
 use anyhow::{Context, Result};
 use thiserror::Error;
 
-use clap::{Arg, ArgAction, ArgMatches, Command, value_parser};
+use clap::{value_parser, Arg, ArgAction, ArgMatches, Command};
 use twelf::{config, Error as TwelfError, Layer};
 
 #[config]
@@ -81,7 +81,8 @@ fn get_args() -> ArgMatches {
                 .value_name("FILE")
                 .value_parser(value_parser!(PathBuf))
                 .default_value(get_default_cfg_path().into_os_string())
-                .help("Optional path to TOML configuration."))
+                .help("Optional path to TOML configuration."),
+        )
         .subcommand(Command::new("spawn").about("Starts the daemon."))
         .get_matches()
 }
@@ -90,10 +91,13 @@ fn get_args() -> ArgMatches {
 async fn main() -> Result<()> {
     let args = get_args();
 
-    let _cfg = try_load_conf(args.try_get_one::<PathBuf>("config")
-                                .map_err(ArgsError::ArgConfigPathGetError).context("Maybe the conf path is missing?")?
-                                .unwrap())
-        .context("Error loading configuration into memory.")?;
+    let _cfg = try_load_conf(
+        args.try_get_one::<PathBuf>("config")
+            .map_err(ArgsError::ArgConfigPathGetError)
+            .context("Maybe the conf path is missing?")?
+            .unwrap(),
+    )
+    .context("Error loading configuration into memory.")?;
 
     Ok(())
 }
