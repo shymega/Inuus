@@ -1,7 +1,7 @@
 //! Module for 'secrets providers'.
 
 /// `SecretsProviderTrait` defines a shared specification for an secrets provider.
-pub trait SecretsProviderTrait {
+pub(crate) trait SecretsProviderTrait {
     /// `get_secret_by_uuid(&str)` takes a UUID of a 'secret', and returns a `String` of the
     /// secret's content.
     /// TODO: Change to shared representation of a SSH key.
@@ -12,10 +12,10 @@ pub trait SecretsProviderTrait {
 }
 
 #[cfg(feature = "bitwarden")]
-pub mod bitwarden;
+pub(crate) mod bitwarden;
 
 #[cfg(feature = "_1password")]
 pub(crate) mod _1password;
 
 #[cfg(feature = "pass")]
-pub mod pass;
+pub(crate) mod pass;

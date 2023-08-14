@@ -1,5 +1,5 @@
 #[derive(Default, Debug, Clone, Copy)]
-pub enum KeyOrigin {
+pub(crate) enum KeyOrigin {
     #[cfg(feature = "bitwarden")]
     Bitwarden,
     #[cfg(feature = "onepassword")]

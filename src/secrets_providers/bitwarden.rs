@@ -1,1 +1,1 @@
-pub struct BitwardenSecretsProvider;
+pub(crate) struct BitwardenSecretsProvider;

@@ -2,27 +2,27 @@ use crate::models::enums::KeyOrigin;
 use ssh_key::{PrivateKey, PublicKey};
 
 #[derive(Debug)]
-pub struct Keys {
-    pub keys: Vec<KeyContainer>,
+pub(crate) struct Keys {
+    pub(crate) keys: Vec<KeyContainer>,
 }
 
 impl Keys {
-    pub fn new() -> Self {
+    pub(crate) fn new() -> Self {
         Self { keys: Vec::new() }
     }
 }
 
 #[derive(Debug)]
-pub struct KeyContainer {
-    pub id: String,
-    pub human_name: String,
-    pub private_keys: Vec<PrivateKey>,
-    pub public_key: PublicKey,
-    pub origin: KeyOrigin,
+pub(crate) struct KeyContainer {
+    pub(crate) id: String,
+    pub(crate) human_name: String,
+    pub(crate) private_keys: Vec<PrivateKey>,
+    pub(crate) public_key: PublicKey,
+    pub(crate) origin: KeyOrigin,
 }
 
 impl KeyContainer {
-    pub fn new(
+    pub(crate) fn new(
         id: &str,
         human_name: &str,
         private_keys: Vec<PrivateKey>,
