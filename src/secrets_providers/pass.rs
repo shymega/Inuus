@@ -102,7 +102,8 @@ impl PassSecretsProvider {
 
                     // Find the paths of the subtree.
                     // Make sure to prepend the current folder to the paths.
-                    let children: Vec<PathBuf> = self.tree_to_paths(indentation)?
+                    let children: Vec<PathBuf> = self
+                        .tree_to_paths(indentation)?
                         .iter()
                         .map(|path| path_parent.join(path))
                         .collect();
