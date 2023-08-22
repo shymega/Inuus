@@ -1,11 +1,9 @@
-use anyhow::Result;
 use std::io;
 use std::path::PathBuf;
 use std::process::Command;
 use std::string;
-use thiserror::Error;
 
-#[derive(Debug, Error)]
+#[derive(Debug, thiserror::Error)]
 pub(crate) enum PassError {
     MalformedPassOutputError(#[source] string::FromUtf8Error),
     PassExecError(#[source] io::Error),
@@ -13,21 +11,21 @@ pub(crate) enum PassError {
 }
 
 pub(crate) struct PassSecretsProvider;
-pub(crate) type PassResult<T, E = PassError> = Result<T, E>;
+pub(crate) type PassResult<T, E = PassError> = anyhow::Result<T, E>;
 
 impl PassSecretsProvider {
-    pub(crate) fn find(&self, q: &String) -> PassResult<String> {
+    pub(crate) fn find(&self, query: &String) -> PassResult<String> {
         let paths = self
             .get_paths()?
             .iter()
             .map(|p| p.to_string_lossy().into_owned())
-            .filter(|p| p.contains(&query[..]))
+            .filter(|p| p.contains(&self.query[..]))
             .collect();
 
         Ok(paths);
     }
 
-    pub(crate) fn query(k: String) -> PassResult<String> {
+    pub(crate) fn query(key: String) -> PassResult<String> {
         let output = Command::new("pass")
             .arg("show")
             .arg(key)
@@ -52,7 +50,7 @@ impl PassSecretsProvider {
         let lines: Vec<String> = String::from_utf8(output.stdout)
             .map_err(PassError::MalformedPassOutputError)?
             .lines()
-            .map(|s| String::from(c))
+            .map(|c| String::from(c))
             .collect();
 
         self.tree_to_paths(Vec::from(&lines[1..]))
@@ -104,7 +102,7 @@ impl PassSecretsProvider {
 
                     // Find the paths of the subtree.
                     // Make sure to prepend the current folder to the paths.
-                    let children: Vec<PathBuf> = tree_to_paths(indentation)?
+                    let children: Vec<PathBuf> = self.tree_to_paths(indentation)?
                         .iter()
                         .map(|path| path_parent.join(path))
                         .collect();
