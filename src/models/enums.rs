@@ -2,8 +2,8 @@
 pub(crate) enum KeyOrigin {
     #[cfg(feature = "bitwarden")]
     Bitwarden,
-    #[cfg(feature = "onepassword")]
-    OnePassword,
+    #[cfg(feature = "_1password")]
+    _1Password,
     #[cfg(feature = "pass")]
     Pass,
     #[default]
