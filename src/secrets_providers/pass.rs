@@ -5,8 +5,11 @@ use std::string;
 
 #[derive(Debug, thiserror::Error)]
 pub(crate) enum PassError {
-    MalformedPassOutputError(#[source] string::FromUtf8Error),
-    PassExecError(#[source] io::Error),
+    #[error("Error parsing the output from `pass`")]
+    MalformedPassOutputError(#[from] string::FromUtf8Error),
+    #[error("Error encountered executing the `pass` executable")]
+    PassExecError(#[from] io::Error),
+    #[error("Generic error with `pass`")]
     GenericPassError,
 }
 
@@ -19,10 +22,10 @@ impl PassSecretsProvider {
             .get_paths()?
             .iter()
             .map(|p| p.to_string_lossy().into_owned())
-            .filter(|p| p.contains(&self.query[..]))
+            .filter(|p| p.contains(&query[..]))
             .collect();
 
-        Ok(paths);
+        Ok(paths)
     }
 
     pub(crate) fn query(key: String) -> PassResult<String> {
