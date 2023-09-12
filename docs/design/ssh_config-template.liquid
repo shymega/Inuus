@@ -1,0 +1,10 @@
+Host github.com
+    HostName {{ keys.GitHub.hostname }}
+    User {{ keys.GitHub.username }}
+    Port {{ keys.GitHub.port or 22 }}
+    IdentityFile {{ keys.GitHub.auto }} # 'auto' tries to find out the correct
+                                        # pubkey for the Host, and uses
+                                        # regexes to assist with this.
+                                        # Once it think it's found the correct
+                                        # pubkey, it will attempt once, then
+                                        # query for user input.
