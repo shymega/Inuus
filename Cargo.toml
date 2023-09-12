@@ -20,7 +20,7 @@ path = "src/lib.rs"
 name = "inud"
 
 [features]
-default = []
+default = ["pass", "bitwarden", "_1password"]
 bitwarden = ["rbw"]
 _1password = []
 pass = []
