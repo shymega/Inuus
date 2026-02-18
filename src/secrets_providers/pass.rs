@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2022-2026 The Inuus Developers
+//
+// SPDX-License-Identifier: Apache-2.0
+
 use std::io;
 use std::path::PathBuf;
 use std::process::Command;

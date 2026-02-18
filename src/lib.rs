@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2022-2026 The Inuus Developers
+//
+// SPDX-License-Identifier: Apache-2.0
+
 //! This is the main library for the `sshwarden` project.
 #![deny(
     warnings,

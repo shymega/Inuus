@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2022-2026 The Inuus Developers
+//
+// SPDX-License-Identifier: Apache-2.0
+
 //! This `module` defines the Inuus agent as a struct and implementation, for usage by the user,
 //! and also by the JSON-RPC client.
 

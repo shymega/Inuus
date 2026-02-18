@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2022-2026 The Inuus Developers
+//
+// SPDX-License-Identifier: Apache-2.0
+
 #[derive(Default, Debug, Clone, Copy)]
 pub(crate) enum KeyOrigin {
     #[cfg(feature = "bitwarden")]

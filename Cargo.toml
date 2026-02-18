@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2022-2026 The Inuus Developers
+#
+# SPDX-License-Identifier: Apache-2.0
+
 [package]
 authors = ["Dom Rodriguez (shymega) <shymega@shymega.org.uk>"]
 categories = ["ssh", "ssh-agent", "ssh-keys"]

@@ -1,3 +1,9 @@
+<!--
+SPDX-FileCopyrightText: 2022-2026 The Inuus Developers
+
+SPDX-License-Identifier: Apache-2.0
+-->
+
 # Contributor Covenant Code of Conduct
 
 ## Our Pledge

@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2022-2026 The Inuus Developers
+#
+# SPDX-License-Identifier: Apache-2.0
+
 {
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";

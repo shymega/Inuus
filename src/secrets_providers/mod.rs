@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2022-2026 The Inuus Developers
+//
+// SPDX-License-Identifier: Apache-2.0
+
 //! Module for 'secrets providers'.
 
 /// `SecretsProviderTrait` defines a shared specification for an secrets provider.

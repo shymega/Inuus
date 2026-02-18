@@ -1,5 +1,6 @@
-# SPDX-FileCopyrightText: Dom Rodriguez <shymega+toybox@shymega.org.uk>
-# SPDX-License-Identifier: GPL-3.0-or-later
+# SPDX-FileCopyrightText: 2022-2026 The Inuus Developers
+#
+# SPDX-License-Identifier: Apache-2.0
 
 version: 2
 updates:

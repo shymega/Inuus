@@ -1,3 +1,9 @@
+<!--
+SPDX-FileCopyrightText: 2022-2026 The Inuus Developers
+
+SPDX-License-Identifier: Apache-2.0
+-->
+
 # Inuus: Guardian of your SSH keys
 
 Welcome to the README for "Inuus", the protector of your SSH keys.
