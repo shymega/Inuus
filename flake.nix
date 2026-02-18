@@ -7,32 +7,27 @@
       flake = false;
     };
   };
-  outputs =
-    { self
-    , nixpkgs
-    , flake-utils
-    , ...
-    }:
+  outputs = inputs: let
+    inherit (inputs) self nixpkgs flake-utils;
+  in
     flake-utils.lib.eachDefaultSystem
-      (system:
-      let
-        pkgs = nixpkgs.outputs.legacyPackages.${system};
-      in
-      {
-        packages.inuus = pkgs.callPackage ./inuus.nix { };
-        packages.default = self.outputs.packages.${system}.inuus;
+    (system: let
+      pkgs = nixpkgs.legacyPackages.${system};
+    in {
+      packages.inuus = pkgs.callPackage ./inuus.nix {};
+      packages.default = self.packages.${system}.inuus;
 
-        devShells.default = self.packages.${system}.default.overrideAttrs (super: {
-          nativeBuildInputs = with pkgs;
-            super.nativeBuildInputs
-            ++ [
-              cargo-edit
-              clippy
-              rustfmt
-            ];
-          RUST_SRC_PATH = "${pkgs.rustPlatform.rustLibSrc}";
-        });
-      })
+      devShells.default = self.packages.${system}.default.overrideAttrs (super: {
+        nativeBuildInputs = with pkgs;
+          super.nativeBuildInputs
+          ++ [
+            cargo-edit
+            clippy
+            rustfmt
+          ];
+        RUST_SRC_PATH = "${pkgs.rustPlatform.rustLibSrc}";
+      });
+    })
     // {
       overlays.default = final: prev: {
         inherit (self.packages.${final.system}) inuus;
