@@ -14,7 +14,7 @@ impl Keys {
 
 impl Default for Keys {
     fn default() -> Self {
-        Keys::new()
+        Self::new()
     }
 }
 
